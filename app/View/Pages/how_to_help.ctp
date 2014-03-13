@@ -1,0 +1,1 @@
+<h2><?php echo __('C&oacute;mo Ayudar', false) ?></h2>
