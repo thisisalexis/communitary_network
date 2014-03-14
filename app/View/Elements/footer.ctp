@@ -1,9 +1,9 @@
 			<div class="row">
 			  <div class="col-md-8" style="text-align: left;">
 			    <ul class="list-inline">
-			      <li><?php echo $this->Html->link(__('Inicio'), '/'); ?></li>
-			      <li><?php echo $this->Html->link(__('Sobre el Sistema'), array('controller' => 'pages', 'action' => 'about' ) ); ?></li>
-			      <li><?php echo $this->Html->link(__('C&oacute;mo Ayudar'), array('controller' => 'pages', 'action' => 'how_to_help' ), array('escape' => false) ); ?></li>
+			      <li><?php echo $this->Html->link(__('Inicio'), array('controller' => 'pages', 'action' => 'display', 'home', 'admin' => false ) ); ?></li>
+			      <li><?php echo $this->Html->link(__('Sobre el Sistema'), array('controller' => 'pages', 'action' => 'about', 'admin' => false  ) ); ?></li>
+			      <li><?php echo $this->Html->link(__('C&oacute;mo Ayudar'), array('controller' => 'pages', 'action' => 'how_to_help', 'admin' => false ), array('escape' => false) ); ?></li>
 			      <!--
 			      <li><a href="#">Comunidades</a></li>
 			      <li><a href="#">Universidades</a></li>

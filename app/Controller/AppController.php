@@ -31,4 +31,23 @@ App::uses('Controller', 'Controller');
  * @link		http://book.cakephp.org/2.0/en/controllers.html#the-app-controller
  */
 class AppController extends Controller {
+
+	public $components = array(
+		'Session',
+		'Auth' => array(
+			'loginAction' => array('controller' => 'users', 'action' => 'login', 'admin' => false ),
+			'loginRedirect' => array('controller' => 'pages', 'action' => 'display', 'home', 'admin' => false ),
+			'logoutRedirect' => array('controller' => 'pages', 'action' => 'display', 'home', 'admin' => false )
+		)
+	);
+
+
+	public function beforeFilter() {
+
+		$this->Auth->authError = "Debe iniciar sesión para poder acceder a esta página";
+
+		//tell the AuthComponent to not require a login for all index and view actions, in every controller
+		//$this->Auth->allow('index', 'view');
+	}
+
 }

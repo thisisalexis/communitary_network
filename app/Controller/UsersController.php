@@ -16,11 +16,43 @@ class UsersController extends AppController {
 	public $components = array('Paginator');
 
 /**
+ * before filter method
+ *
+ * 
+ * 
+ * @return void
+ */
+	public function beforeFilter() {
+		parent::beforeFilter();
+		$this->Auth->allow('signup'); // Letting users register themselves
+	}
+
+
+	public function login(){
+		if ($this->request->is('post')) {
+			if ($this->Auth->login()) {
+				//$this->redirect( $this->Auth->redirect() ); // Esta verga porr alguna razón no funciona, aún cuando está definido en el components de AppController
+				$this->redirect( array('controller' => 'pages', 'action' => 'display', 'home' ) );
+			} else {
+				$this->Session->setFlash(__('Datos inválidos, intenta nuevamente'));
+			}
+		}
+
+		$this->layout = 'login';
+
+	}
+
+	public function logout() {
+		$this->redirect( $this->Auth->logout() );
+	}
+
+
+/**
  * index method
  *
  * @return void
  */
-	public function index() {
+	private function _index() {
 		$this->User->recursive = 0;
 		$this->set('users', $this->Paginator->paginate());
 	}
@@ -32,12 +64,8 @@ class UsersController extends AppController {
  * @param string $id
  * @return void
  */
-	public function view($id = null) {
-		if (!$this->User->exists($id)) {
-			throw new NotFoundException(__('Invalid user'));
-		}
-		$options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
-		$this->set('user', $this->User->find('first', $options));
+	public function profile() {
+
 	}
 
 /**
@@ -45,14 +73,17 @@ class UsersController extends AppController {
  *
  * @return void
  */
-	public function add() {
+	public function signup() {
 		if ($this->request->is('post')) {
 			$this->User->create();
+
+			$this->request->data['User']['is_active'] = true;
+			
 			if ($this->User->save($this->request->data)) {
-				$this->Session->setFlash(__('El usuario ha sido creado'));
-				return $this->redirect(array('action' => 'index'));
+				$this->Session->setFlash(__('Su registro ha sido completado con éxito. Ahora debe iniciar sesión.'));
+				return $this->redirect(array('action' => 'login'));
 			} else {
-				$this->Session->setFlash(__('El usuario no pudo ser creado. Por favor, intente de nuevo.'));
+				$this->Session->setFlash(__('Ha ocurrido un error y no ha podido registrarse. Por favor, intente de nuevo.'));
 			}
 		}
 	}
@@ -64,19 +95,22 @@ class UsersController extends AppController {
  * @param string $id
  * @return void
  */
-	public function edit($id = null) {
-		if (!$this->User->exists($id)) {
+	public function edit_profile() {
+		if (!$this->User->exists( $this->Auth->user('id') )) {
 			throw new NotFoundException(__('Usuario inválido'));
 		}
 		if ($this->request->is(array('post', 'put'))) {
+
+			$this->Auth->user('is_admin') ? null : $this->request->data['User']['is_admin'] = false;
+			
 			if ($this->User->save($this->request->data)) {
-				$this->Session->setFlash(__('Los cambios han sido guardados con éxito.'));
-				return $this->redirect(array('action' => 'index'));
+				$this->Session->setFlash(__('Sus datos han sido guardados con éxito.'));
+				return $this->redirect(array('action' => 'profile'));
 			} else {
 				$this->Session->setFlash(__('Los cambios no han podido guardarse. Por favor, intente de nuevo.'));
 			}
 		} else {
-			$options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
+			$options = array('conditions' => array('User.' . $this->User->primaryKey => $this->Auth->user('id')));
 			$this->request->data = $this->User->find('first', $options);
 		}
 	}
@@ -88,7 +122,7 @@ class UsersController extends AppController {
  * @param string $id
  * @return void
  */
-	public function delete($id = null) {
+	private function _delete($id = null) {
 		$this->User->id = $id;
 		if (!$this->User->exists()) {
 			throw new NotFoundException(__('Usuario inválido'));
@@ -110,6 +144,7 @@ class UsersController extends AppController {
 	public function admin_index() {
 		$this->User->recursive = 0;
 		$this->set('users', $this->Paginator->paginate());
+
 	}
 
 /**
@@ -125,6 +160,7 @@ class UsersController extends AppController {
 		}
 		$options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
 		$this->set('user', $this->User->find('first', $options));
+
 	}
 
 /**
@@ -142,6 +178,7 @@ class UsersController extends AppController {
 				$this->Session->setFlash(__('El usuario no ha podido crearse. Por favor, inténtelo de nuevo.'));
 			}
 		}
+
 	}
 
 /**

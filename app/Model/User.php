@@ -28,6 +28,15 @@ class User extends AppModel {
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
+			'between' => array(
+				'rule' => array('between', 6, 100),
+				'message' => 'Debe tener entre 6 y 100 caracteres'
+			),
+			'email' => array(
+				'rule' => 'email',
+				'message' => 'Debe ser una dirección de correo electrónico válida'
+			)
+
 		),
 		'password' => array(
 			'notEmpty' => array(
@@ -38,6 +47,10 @@ class User extends AppModel {
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
+			'between' => array(
+				'rule' => array('between', 6, 20),
+				'message' => 'Debe tener entre 6 y 20 caracteres'
+			)
 		),
 		'is_admin' => array(
 			'boolean' => array(
@@ -80,4 +93,12 @@ class User extends AppModel {
 			),
 		),
 	);
+
+	public function beforeSave($options = array()) {
+		if (isset($this->data[$this->alias]['password'])) {
+			$this->data[$this->alias]['password'] = AuthComponent::password($this->data[$this->alias]['password']);
+		}
+		return true;
+	}
+
 }

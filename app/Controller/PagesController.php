@@ -38,6 +38,18 @@ class PagesController extends AppController {
 	public $uses = array();
 
 /**
+ * before filter method
+ *
+ * 
+ * 
+ * @return void
+ */
+	public function beforeFilter() {
+		parent::beforeFilter();
+		$this->Auth->allow('display'); //Letting users register themselves
+	}
+
+/**
  * Displays a view
  *
  * @param mixed What page to display

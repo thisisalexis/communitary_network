@@ -8,7 +8,14 @@
 				?></h1>
 			  </div>
 				<div class="col-md-8">
+
+					
+					<!--
 					<div class="user-options pull-right">
+
+						<?php // echo $this->Html->link('Iniciar Sesi&oacute;n', array('controller' => 'users', 'action' => 'login'), array('escape' => false, 'class' => 'btn btn-danger btn-sm' )); ?>
+						<?php // echo $this->Html->link('Reg&iacute;strese', array('controller' => 'users', 'action' => 'signup'), array('escape' => false, 'class' => 'btn btn-danger btn-sm' )); ?>
+					    
 					    <form class="form-inline" role="form">
 							<div class="form-group">
 								<label class="sr-only" for="formUsername">Correo Electr&oacute;nico</label>
@@ -20,6 +27,9 @@
 							</div>
 					      	<button type="submit" class="btn btn-default">Iniciar Sesi&oacute;n</button>
 					    </form>
+						
 				    </div>
+				    -->
+
 				</div>
 			</div>
