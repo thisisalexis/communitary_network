@@ -16,6 +16,11 @@ class NeedsController extends AppController {
  */
 	public $components = array('Paginator', 'Session');
 
+	public function beforeFilter() {
+		parent::beforeFilter();
+		$this->set( 'navbar_active_element', 'admin' );
+	}
+
 /**
  * index method
  *

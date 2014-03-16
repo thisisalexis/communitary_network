@@ -12,7 +12,7 @@
 		<table class="table">
 			<tbody>
 				<tr>
-					<th style="20%"><?php echo __('ID'); ?></th>
+					<th style="width: 20%"><?php echo __('ID'); ?></th>
 					<td><?php echo h($need['Need']['id']); ?>&nbsp;</td>
 				</tr>
 				<tr>

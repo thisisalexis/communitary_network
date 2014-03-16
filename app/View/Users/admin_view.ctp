@@ -11,7 +11,7 @@
 		<table class="table">
 			<tbody>
 				<tr>
-					<th class="col-md-4"><?php echo __('ID'); ?></th>
+					<th style="width: 30%; "><?php echo __('ID'); ?></th>
 					<td><?php echo h($user['User']['id']); ?>&nbsp;</td>
 				</tr>
 				<tr>

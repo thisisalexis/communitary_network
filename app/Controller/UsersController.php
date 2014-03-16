@@ -65,7 +65,7 @@ class UsersController extends AppController {
  * @return void
  */
 	public function profile() {
-
+		$this->set( 'navbar_active_element', 'account' );
 	}
 
 /**
@@ -74,6 +74,8 @@ class UsersController extends AppController {
  * @return void
  */
 	public function signup() {
+		$this->set( 'navbar_active_element', 'signup' );
+
 		if ($this->request->is('post')) {
 			$this->User->create();
 
@@ -96,6 +98,9 @@ class UsersController extends AppController {
  * @return void
  */
 	public function edit_profile() {
+
+		$this->set( 'navbar_active_element', 'account' );
+
 		if (!$this->User->exists( $this->Auth->user('id') )) {
 			throw new NotFoundException(__('Usuario inválido'));
 		}
@@ -114,6 +119,34 @@ class UsersController extends AppController {
 			$this->request->data = $this->User->find('first', $options);
 		}
 	}
+
+	/**
+	 * change password method
+	 *
+	 */
+	public function change_password(){
+
+		$this->set( 'navbar_active_element', 'account' );
+
+		if (!$this->User->exists( $this->Auth->user('id') )) {
+			throw new NotFoundException(__('Usuario inválido'));
+		}
+		if ($this->request->is(array('post', 'put'))) {
+
+			$this->Auth->user('is_admin') ? null : $this->request->data['User']['is_admin'] = false;
+			
+			if ($this->User->save($this->request->data)) {
+				$this->Session->setFlash(__('Sus datos han sido guardados con éxito.'));
+				return $this->redirect(array('action' => 'profile'));
+			} else {
+				$this->Session->setFlash(__('Los cambios no han podido guardarse. Por favor, intente de nuevo.'));
+			}
+		} else {
+			$options = array('conditions' => array('User.' . $this->User->primaryKey => $this->Auth->user('id')));
+			$this->request->data = $this->User->find('first', $options);
+		}
+	}
+
 
 /**
  * delete method
@@ -142,6 +175,9 @@ class UsersController extends AppController {
  * @return void
  */
 	public function admin_index() {
+
+		$this->set( 'navbar_active_element', 'admin' );
+
 		$this->User->recursive = 0;
 		$this->set('users', $this->Paginator->paginate());
 
@@ -155,6 +191,8 @@ class UsersController extends AppController {
  * @return void
  */
 	public function admin_view($id = null) {
+		$this->set( 'navbar_active_element', 'admin' );
+
 		if (!$this->User->exists($id)) {
 			throw new NotFoundException(__('Usuario Inválido'));
 		}
@@ -169,6 +207,8 @@ class UsersController extends AppController {
  * @return void
  */
 	public function admin_add() {
+		$this->set( 'navbar_active_element', 'admin' );
+
 		if ($this->request->is('post')) {
 			$this->User->create();
 			if ($this->User->save($this->request->data)) {
@@ -189,6 +229,8 @@ class UsersController extends AppController {
  * @return void
  */
 	public function admin_edit($id = null) {
+		$this->set( 'navbar_active_element', 'admin' );
+
 		if (!$this->User->exists($id)) {
 			throw new NotFoundException(__('Usuario inválido'));
 		}

@@ -3,6 +3,7 @@
 <div class="panel panel-default">
 	<div class="panel-heading">
 		<?php echo $this->Html->link(__('Modificar mis datos'), array('action' => 'edit_profile'), array('class' => 'btn btn-primary btn-xs')); ?> 
+		<?php echo $this->Html->link(__('Cambiar Contrase&ntilde;a'), array('action' => 'change_password'), array('class' => 'btn btn-primary btn-xs', 'escape' => false )); ?> 
 	</div>
 
 	<div class="table-responsive">

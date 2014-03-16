@@ -48,6 +48,9 @@ class AppController extends Controller {
 
 		//tell the AuthComponent to not require a login for all index and view actions, in every controller
 		//$this->Auth->allow('index', 'view');
+
+		$this->set( 'navbar_active_element', 'home' );
+
 	}
 
 }

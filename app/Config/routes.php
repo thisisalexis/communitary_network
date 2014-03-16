@@ -36,6 +36,7 @@
 	Router::connect('/profile', array('controller' => 'users', 'action' => 'profile'));
 	Router::connect('/edit_profile', array('controller' => 'users', 'action' => 'edit_profile'));
 	Router::connect('/logout', array('controller' => 'users', 'action' => 'logout'));
+	Router::connect('/change_password', array('controller' => 'users', 'action' => 'change_password'));
 
 /**
  * Load all plugin routes. See the CakePlugin documentation on
