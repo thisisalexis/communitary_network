@@ -1,4 +1,5 @@
 body {
+  background: url(../img/bg-bottom.jpg) bottom left repeat-x #fff;
   padding-bottom: 10px;
 }
 
@@ -26,21 +27,22 @@ body {
 }
 
 .jumbotron {
-  padding: 40px 10px;
+  padding: 70px 30px;
   text-align: center;
   /*background-color: transparent;*/
+  background: url(../img/jumbotron-m.jpg) top left #fff;
   margin-bottom: 10px;
 }
 
 .jumbotron h1 {
   color: #09f;
-  margin-bottom: 25px;
+  margin-bottom: 40px;
   font-weight: bold;
 }
 
 .jumbotron p {
-  color: #777;
-  margin-bottom: 30px;
+  color: #444;
+  margin-bottom: 40px;
 }
 
 .jumbotron hr { 
