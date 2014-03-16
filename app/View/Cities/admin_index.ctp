@@ -11,7 +11,6 @@
 				<tr>
 					<th style="width: 4%;"><?php echo $this->Paginator->sort('id', 'ID'); ?></th>
 					<th><?php echo $this->Paginator->sort('name', 'Nombre'); ?></th>
-					<th style="width: 4%;"><?php echo $this->Paginator->sort('code', 'Código'); ?></th>
 					<th><?php echo $this->Paginator->sort('state_id', 'Estado'); ?></th>
 					<th style="width: 4%;">&nbsp;</th>
 					<th style="width: 4%;">&nbsp;</th>
@@ -22,7 +21,6 @@
 				<tr>
 					<td><?php echo h($city['City']['id']); ?>&nbsp;</td>
 					<td><?php echo $this->Html->link(h($city['City']['name']), array('action' => 'view', $city['City']['id'])); ?>&nbsp;</td>
-					<td><?php echo h($city['City']['code']); ?>&nbsp;</td>
 					<td>
 						<?php echo $this->Html->link($city['State']['name'], array('controller' => 'states', 'action' => 'view', $city['State']['id'], 'admin' => true )); ?>
 					</td>

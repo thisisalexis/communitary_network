@@ -22,10 +22,6 @@
 					<td><?php echo h($city['City']['description']); ?>&nbsp;</td>
 				</tr>
 				<tr>
-					<th><?php echo __('C&oacute;digo', false); ?></th>
-					<td><?php echo h($city['City']['code']); ?>&nbsp;</td>
-				</tr>
-				<tr>
 					<th><?php echo __('Pa&iacute;s', false); ?></th>
 					<td><?php echo $this->Html->link($city['State']['name'], array('controller' => 'states', 'action' => 'view', $city['State']['id'], 'admin' => true )); ?>&nbsp;</td>
 				</tr>

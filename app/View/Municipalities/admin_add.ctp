@@ -1,22 +1,22 @@
-<div class="municipalities form">
-<?php echo $this->Form->create('Municipality'); ?>
-	<fieldset>
-		<legend><?php echo __('Add Municipality'); ?></legend>
-	<?php
-		echo $this->Form->input('name');
-		echo $this->Form->input('description');
-		echo $this->Form->input('code');
-		echo $this->Form->input('city_id');
-	?>
-	</fieldset>
-<?php echo $this->Form->end(__('Submit')); ?>
-</div>
-<div class="actions">
-	<h3><?php echo __('Actions'); ?></h3>
-	<ul>
+<h2><?php echo __('Agregar registro'); ?></h2>
 
-		<li><?php echo $this->Html->link(__('List Municipalities'), array('action' => 'index')); ?></li>
-		<li><?php echo $this->Html->link(__('List Cities'), array('controller' => 'cities', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New City'), array('controller' => 'cities', 'action' => 'add')); ?> </li>
-	</ul>
+<div class="countries form">
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<?php echo $this->Html->link('<span class="glyphicon glyphicon-chevron-left"></span> Volver a listado de municipios', array('action' => 'index', 'admin' => true),  array('class' => 'btn btn-success btn-xs', 'escape' => false )); ?>
+	</div>
 </div>
+
+
+<?php 
+	echo $this->Form->create('Municipality', array('class' => 'form-horizontal', 'role'=> 'form' )); 
+
+	echo $this->Form->input('name', array('label' => array('text' => __('Nombre'), 'class' => 'col-sm-2 control-label'), 'class' => 'form-control', 'placeholder' => 'Nombre', 'escape' => false, 'maxlength' => '100',  'div' => 'form-group', 'between' => '<div class="col-sm-10">', 'after' => '</div>', 'error' => array( 'attributes' => array('wrap' => 'div', 'class' => 'col-sm-10 col-sm-offset-2 text-danger' ) ) ));
+	
+	echo $this->Form->input('description', array('label' => array('text' => __('Descripci&oacute;n'), 'class' => 'col-sm-2 control-label'), 'class' => 'form-control', 'placeholder' => 'Descripci&oacute;n', 'escape' => false,  'div' => 'form-group', 'between' => '<div class="col-sm-10">', 'after' => '</div>', 'error' => array( 'attributes' => array('wrap' => 'div', 'class' => 'col-sm-10 col-sm-offset-2 text-danger' ) ) ));
+
+	echo $this->Form->input('city_id', array('label' => array('text' => __('Ciudad'), 'class' => 'col-sm-2 control-label'), 'class' => 'form-control', 'placeholder' => 'Ciudad', 'escape' => false,  'div' => 'form-group', 'between' => '<div class="col-sm-10">', 'after' => '</div>', 'error' => array( 'attributes' => array('wrap' => 'div', 'class' => 'col-sm-10 col-sm-offset-2 text-danger' ) ) ));
+		
+	echo $this->Form->end(array('label' => __('Agregar registro'), 'class' => 'btn btn-primary btn-sm', 'div' => 'form-group', 'before' => '<div class="col-sm-10 col-sm-offset-2">', 'after' => '&nbsp;'. $this->Html->link('Cancelar', array('action' => 'index', 'admin' => true )) . '</div>'  ) ); 
+		
+?>

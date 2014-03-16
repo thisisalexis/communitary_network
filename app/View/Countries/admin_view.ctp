@@ -21,10 +21,6 @@
 					<th><?php echo __('Descripci&oacute;n', false); ?></th>
 					<td><?php echo h($country['Country']['description']); ?>&nbsp;</td>
 				</tr>
-				<tr>
-					<th><?php echo __('C&oacute;digo', false); ?></th>
-					<td><?php echo h($country['Country']['code']); ?>&nbsp;</td>
-				</tr>
 			</tbody>
 		</table>
 	</div>

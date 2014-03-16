@@ -1,3 +1,4 @@
+
 <h2><?php echo __('Estados'); ?></h2>
 
 <div class="panel panel-default">
@@ -20,10 +21,6 @@
 				<tr>
 					<th><?php echo __('Descripci&oacute;n', false); ?></th>
 					<td><?php echo h($state['State']['description']); ?>&nbsp;</td>
-				</tr>
-				<tr>
-					<th><?php echo __('C&oacute;digo', false); ?></th>
-					<td><?php echo h($state['State']['code']); ?>&nbsp;</td>
 				</tr>
 				<tr>
 					<th><?php echo __('Pa&iacute;s', false); ?></th>

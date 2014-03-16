@@ -22,10 +22,6 @@
 					<td><?php echo h($municipality['Municipality']['description']); ?>&nbsp;</td>
 				</tr>
 				<tr>
-					<th><?php echo __('C&oacute;digo', false); ?></th>
-					<td><?php echo h($municipality['Municipality']['code']); ?>&nbsp;</td>
-				</tr>
-				<tr>
 					<th><?php echo __('Pa&iacute;s', false); ?></th>
 					<td><?php echo $this->Html->link($municipality['City']['name'], array('controller' => 'cities', 'action' => 'view', $municipality['City']['id'], 'admin' => true )); ?>&nbsp;</td>
 				</tr>

@@ -11,7 +11,6 @@
 				<tr>
 					<th style="width: 4%;"><?php echo $this->Paginator->sort('id', 'ID'); ?></th>
 					<th><?php echo $this->Paginator->sort('name', 'Nombre'); ?></th>
-					<th style="width: 4%;"><?php echo $this->Paginator->sort('code', 'Código'); ?></th>
 					<th style="width: 4%;">&nbsp;</th>
 					<th style="width: 4%;">&nbsp;</th>
 				</tr>
@@ -21,7 +20,6 @@
 				<tr>
 					<td class="text-center"><?php echo h($country['Country']['id']); ?>&nbsp;</td>
 					<td><?php echo $this->Html->link( h($country['Country']['name']) , array('action' => 'view', $country['Country']['id'])); ?> &nbsp;</td>
-					<td class="text-center"><?php echo h($country['Country']['code']); ?>&nbsp;</td>
 					<td class="text-center">
 						<?php echo $this->Html->link('<span class="glyphicon glyphicon-edit"></span>', array('action' => 'admin_edit', $country['Country']['id'], 'admin' => true), array('escape' => false, 'class' => 'btn btn-success btn-xs', 'alt' => __('Editar'), 'tittle' => __('Editar') )); ?>
 					</td>

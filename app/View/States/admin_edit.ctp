@@ -1,26 +1,24 @@
-<div class="states form">
-<?php echo $this->Form->create('State'); ?>
-	<fieldset>
-		<legend><?php echo __('Edit State'); ?></legend>
-	<?php
-		echo $this->Form->input('id');
-		echo $this->Form->input('name');
-		echo $this->Form->input('description');
-		echo $this->Form->input('code');
-		echo $this->Form->input('country_id');
-	?>
-	</fieldset>
-<?php echo $this->Form->end(__('Submit')); ?>
-</div>
-<div class="actions">
-	<h3><?php echo __('Actions'); ?></h3>
-	<ul>
+<h2><?php echo __('Modificar registro'); ?></h2>
 
-		<li><?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $this->Form->value('State.id')), null, __('Are you sure you want to delete # %s?', $this->Form->value('State.id'))); ?></li>
-		<li><?php echo $this->Html->link(__('List States'), array('action' => 'index')); ?></li>
-		<li><?php echo $this->Html->link(__('List Countries'), array('controller' => 'countries', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Country'), array('controller' => 'countries', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Cities'), array('controller' => 'cities', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New City'), array('controller' => 'cities', 'action' => 'add')); ?> </li>
-	</ul>
+<div class="countries form">
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<?php echo $this->Html->link('<span class="glyphicon glyphicon-chevron-left"></span> Volver a listado de estados', array('action' => 'index', 'admin' => true),  array('class' => 'btn btn-success btn-xs', 'escape' => false )); ?>
+	</div>
 </div>
+
+
+<?php 
+	echo $this->Form->create('State', array('class' => 'form-horizontal', 'role'=> 'form' )); 
+
+	echo $this->Form->input('id');
+
+	echo $this->Form->input('name', array('label' => array('text' => __('Nombre'), 'class' => 'col-sm-2 control-label'), 'class' => 'form-control', 'placeholder' => 'Nombre', 'escape' => false, 'maxlength' => '100',  'div' => 'form-group', 'between' => '<div class="col-sm-10">', 'after' => '</div>', 'error' => array( 'attributes' => array('wrap' => 'div', 'class' => 'col-sm-10 col-sm-offset-2 text-danger' ) ) ));
+	
+	echo $this->Form->input('description', array('label' => array('text' => __('Descripci&oacute;n'), 'class' => 'col-sm-2 control-label'), 'class' => 'form-control', 'placeholder' => 'Descripci&oacute;n', 'escape' => false,  'div' => 'form-group', 'between' => '<div class="col-sm-10">', 'after' => '</div>', 'error' => array( 'attributes' => array('wrap' => 'div', 'class' => 'col-sm-10 col-sm-offset-2 text-danger' ) ) ));
+
+	echo $this->Form->input('country_id', array('label' => array('text' => __('Pa&iacute;s'), 'class' => 'col-sm-2 control-label'), 'class' => 'form-control', 'placeholder' => 'Pa&iacute;s', 'escape' => false,  'div' => 'form-group', 'between' => '<div class="col-sm-10">', 'after' => '</div>', 'error' => array( 'attributes' => array('wrap' => 'div', 'class' => 'col-sm-10 col-sm-offset-2 text-danger' ) ) ));
+		
+	echo $this->Form->end(array('label' => __('Guardar Cambios'), 'class' => 'btn btn-primary btn-sm', 'div' => 'form-group', 'before' => '<div class="col-sm-10 col-sm-offset-2">', 'after' => '&nbsp;'. $this->Html->link('Cancelar', array('action' => 'index', 'admin' => true )) . '</div>'  ) ); 
+		
+?>
