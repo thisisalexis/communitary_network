@@ -182,7 +182,7 @@ class University extends AppModel {
 			'foreignKey' => 'municipality_id',
 			'conditions' => '',
 			'fields' => '',
-			'order' => ''
+			'order' => '', 
 		),
 		'ParentUniversity' => array(
 			'className' => 'University',

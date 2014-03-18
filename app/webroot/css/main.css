@@ -1,5 +1,5 @@
 body {
-  background: url(../img/bg-bottom.jpg) bottom left repeat-x #fff;
+  /*background: url(../img/bg-bottom.jpg) bottom left repeat-x #fff;*/
   padding-bottom: 10px;
 }
 
@@ -30,7 +30,7 @@ body {
   padding: 70px 30px;
   text-align: center;
   /*background-color: transparent;*/
-  background: url(../img/jumbotron-m.jpg) top left #fff;
+  background: url(../img/bg-jumbotron.jpg) top left #fff;
   margin-bottom: 10px;
 }
 
@@ -51,7 +51,7 @@ body {
 }
 
 h2 { 
-  background: #fff;
+  background: url(../img/bg-h2.jpg) bottom right no-repeat #fff;
   border-bottom: 5px solid #ccc;
   
   color: #09c;

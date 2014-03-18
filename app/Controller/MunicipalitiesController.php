@@ -109,4 +109,18 @@ class MunicipalitiesController extends AppController {
 			$this->Session->setFlash(__('El registro no ha podido eliminarse. Por favor, intente de nuevo.'));
 		}
 		return $this->redirect(array('action' => 'index'));
-	}}
+	}
+
+	public function getByCity() {
+		$city_id = $this->request->data['University']['city_id'];
+ 
+		$municipalities = $this->Municipality->find('list', array(
+			'conditions' => array('Municipality.city_id' => $city_id),
+			'recursive' => -1
+			));
+ 
+		$this->set('municipalities',$municipalities);
+		$this->layout = 'ajax';
+	}
+
+}
