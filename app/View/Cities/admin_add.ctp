@@ -7,7 +7,6 @@
 	</div>
 </div>
 
-
 <?php 
 	echo $this->Form->create('City', array('class' => 'form-horizontal', 'role'=> 'form' )); 
 

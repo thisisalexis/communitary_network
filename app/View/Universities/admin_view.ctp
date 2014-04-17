@@ -90,11 +90,11 @@
 				</tr>
 				<tr>
 					<th><?php echo __('Creado'); ?></th>
-					<td><?php echo h($university['University']['created']); ?>&nbsp;</td>
+					<td><?php echo $this->Time->format($university['University']['created'], '%d/%m/%Y - %H:%M %p', 'invalid'); ?>&nbsp;</td>
 				</tr>
 				<tr>
 					<th><?php echo __('Modificado'); ?></th>
-					<td><?php echo h($university['University']['modified']); ?>&nbsp;</td>
+					<td><?php echo $this->Time->format($university['University']['modified'], '%d/%m/%Y - %H:%M %p', 'invalid'); ?>&nbsp;</td>
 				</tr>
 			</tbody>
 		</table>
@@ -112,7 +112,7 @@
 
 	<div class="table-responsive">
 		<table class="table table-striped">
-			<thead>
+			<thead> 
 				<tr>
 					<th style="width: 4%;"><?php echo __('ID'); ?></th>
 					<th><?php echo __('Nombre'); ?></th>

@@ -26,7 +26,7 @@ class MunicipalitiesController extends AppController {
  * @return void
  */
 	public function admin_index() {
-		$this->Municipality->recursive = 0;
+		$this->Municipality->recursive = 3;
 		$this->set('municipalities', $this->Paginator->paginate());
 	}
 

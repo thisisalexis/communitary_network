@@ -11,6 +11,8 @@
 				<tr>
 					<th style="width: 4%;"><?php echo $this->Paginator->sort('id', 'ID'); ?></th>
 					<th><?php echo $this->Paginator->sort('name', 'Nombre'); ?></th>
+					<th><?php echo __('Pa&iacute;s', false); ?></th>
+					<th><?php echo __('Estado', false); ?></th>
 					<th><?php echo $this->Paginator->sort('city_id', 'Ciudad'); ?></th>
 					<th style="width: 4%;">&nbsp;</th>
 					<th style="width: 4%;">&nbsp;</th>
@@ -21,6 +23,12 @@
 				<tr>
 					<td><?php echo h($municipality['Municipality']['id']); ?>&nbsp;</td>
 					<td><?php echo $this->Html->link(h($municipality['Municipality']['name']), array('action' => 'view', $municipality['Municipality']['id'])); ?>&nbsp;</td>
+					<td>
+						<?php echo $this->Html->link($municipality['City']['State']['Country']['name'], array('controller' => 'countries', 'action' => 'view', $municipality['City']['State']['Country']['id'])); ?>
+					</td>
+					<td>
+						<?php echo $this->Html->link($municipality['City']['State']['name'], array('controller' => 'states', 'action' => 'view', $municipality['City']['State']['id'])); ?>
+					</td>
 					<td>
 						<?php echo $this->Html->link($municipality['City']['name'], array('controller' => 'cities', 'action' => 'view', $municipality['City']['id'])); ?>
 					</td>

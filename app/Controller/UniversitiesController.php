@@ -30,8 +30,9 @@ class UniversitiesController extends AppController {
  * @return void
  */
 	public function index() {
-		$this->University->recursive = 0;
-		$this->set('universities', $this->Paginator->paginate());
+		$this->University->recursive = 3;
+
+		$this->set('universities', $this->Paginator->paginate('University',  array('University.is_active' => true) ));
 	}
 
 /**
@@ -43,8 +44,9 @@ class UniversitiesController extends AppController {
  */
 	public function view($id = null) {
 		if (!$this->University->exists($id)) {
-			throw new NotFoundException(__('Registr inválido'));
+			throw new NotFoundException(__('Registro inválido'));
 		}
+		$this->University->recursive = 3;
 		$options = array('conditions' => array('University.' . $this->University->primaryKey => $id));
 		$this->set('university', $this->University->find('first', $options));
 	}
@@ -83,17 +85,39 @@ class UniversitiesController extends AppController {
 		if ($this->request->is(array('post', 'put'))) {
 			if ($this->University->save($this->request->data)) {
 				$this->Session->setFlash(__('Los cambios han sido guardados éxitosamente.'));
-				return $this->redirect(array('action' => 'index'));
+				return $this->redirect(array('action' => 'view', $this->request->data['University']['id']));
 			} else {
 				$this->Session->setFlash(__('Los cambios no han podido guardarse. Por favor, intente nuevamente.'));
 			}
 		} else {
 			$options = array('conditions' => array('University.' . $this->University->primaryKey => $id));
-			$this->request->data = $this->University->find('first', $options);
+			$university = $this->University->find('first', $options);
+			$this->set('university', $university);
+			$this->request->data = $university;
 		}
 		$municipalities = $this->University->Municipality->find('list');
-		$parentUniversities = $this->University->ParentUniversity->find('list');
+		$options = array( 'conditions' => array('ParentUniversity.is_active' => true ) );
+		$parentUniversities = $this->University->ParentUniversity->find('list', $options );
 		$this->set(compact('municipalities', 'parentUniversities'));
+	}
+
+	public function customize($id = null) {
+		if (!$this->University->exists($id)) {
+			throw new NotFoundException(__('Registro inválido.'));
+		}
+		if ($this->request->is(array('post', 'put'))) {
+			if ($this->University->save($this->request->data)) {
+				$this->Session->setFlash(__('Los cambios han sido guardados éxitosamente.'));
+				return $this->redirect(array('action' => 'customize', $this->request->data['University']['id']));
+			} else {
+				$this->Session->setFlash(__('Los cambios no han podido guardarse. Por favor, intente nuevamente.'));
+			}
+		} else {
+			$options = array('conditions' => array('University.' . $this->University->primaryKey => $id));
+			$university = $this->University->find('first', $options);
+			$this->set('university', $university);
+			$this->request->data =  $university;
+		}
 	}
 
 /**
@@ -123,7 +147,7 @@ class UniversitiesController extends AppController {
  * @return void
  */
 	public function admin_index() {
-		$this->University->recursive = 0;
+		$this->University->recursive = 3;
 		$this->set('universities', $this->Paginator->paginate());
 
 		$this->set( 'navbar_active_element', 'admin' );
@@ -172,7 +196,8 @@ class UniversitiesController extends AppController {
 		}
 		$cities =  $this->University->Municipality->City->find('list');
 		$municipalities = $this->University->Municipality->find('list');
-		$parentUniversities = $this->University->ParentUniversity->find('list');
+		$options = array( 'conditions' => array('ParentUniversity.is_active' => true ) );
+		$parentUniversities = $this->University->ParentUniversity->find('list', $options);
 		$this->set(compact('municipalities', 'parentUniversities'));
 
 		$this->set( 'navbar_active_element', 'admin');
@@ -202,7 +227,9 @@ class UniversitiesController extends AppController {
 			$this->request->data = $this->University->find('first', $options);
 		}
 		$municipalities = $this->University->Municipality->find('list');
-		$parentUniversities = $this->University->ParentUniversity->find('list');
+
+		$options = array( 'conditions' => array('ParentUniversity.is_active' => true ) );
+		$parentUniversities = $this->University->ParentUniversity->find('list', $options);
 		$this->set(compact('municipalities', 'parentUniversities'));
 
 		$this->set( 'navbar_active_element', 'admin');

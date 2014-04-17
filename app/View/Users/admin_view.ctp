@@ -28,11 +28,11 @@
 				</tr>
 				<tr>
 					<th><?php echo __('Fecha de Creaci&oacute;n'); ?></th>
-					<td><?php echo h($user['User']['created']); ?>&nbsp;</td>
+					<td><?php echo $this->Time->format($user['User']['created'], '%d/%m/%Y - %H:%M %p', 'invalid'); ?>>&nbsp;</td>
 				</tr>
 				<tr>
 					<th><?php echo __('&Uacute;ltima de modificaci&oacute;n'); ?></th>
-					<td><?php echo h($user['User']['modified']); ?>&nbsp;</td>
+					<td><?php echo $this->Time->format($user['User']['modified'], '%d/%m/%Y - %H:%M %p', 'invalid'); ?>&nbsp;</td>
 				</tr>
 			</tbody>
 		</table>

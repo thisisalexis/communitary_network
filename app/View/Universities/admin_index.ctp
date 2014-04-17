@@ -11,6 +11,8 @@
 				<tr>
 					<th style="width: 4%;"><?php echo $this->Paginator->sort('id', 'ID'); ?></th>
 					<th><?php echo $this->Paginator->sort('name', 'Nombre'); ?></th>
+					<th><?php echo 'Estado'; ?></th>
+					<th><?php echo 'Ciudad'; ?></th>
 					<th><?php echo $this->Paginator->sort('municipality_id', 'Municipio'); ?></th>
 					<th style="width: 4%;"><?php echo $this->Paginator->sort('parent_id', 'Núcleo'); ?></th>
 					<th style="width: 4%;"><?php echo $this->Paginator->sort('is_active', 'Activa'); ?></th>
@@ -23,6 +25,12 @@
 				<tr>
 					<td><?php echo h($university['University']['id']); ?>&nbsp;</td>
 					<td><?php echo $this->Html->link(h($university['University']['name']), array('action' => 'view', $university['University']['id'], 'admin' => true)); ?>&nbsp;</td>
+					<td>
+						<?php echo h($university['Municipality']['City']['State']['name']); ?>
+					</td>
+					<td>
+						<?php echo h($university['Municipality']['City']['name']); ?>
+					</td>
 					<td>
 						<?php echo h($university['Municipality']['name']); ?>
 					</td>
