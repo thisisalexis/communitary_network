@@ -12,14 +12,16 @@
 	        <ul class="nav navbar-nav">
 	          <li <?php echo $navbar_active_element == 'home' ? ' class="active" ' : null; ?>><?php echo $this->Html->link(__('Inicio'), array('controller' => 'pages', 'action' => 'display', 'home', 'admin' => false )); ?></li>
 	          <li <?php echo $navbar_active_element == 'universities' ? ' class="active" ' : null; ?>><?php echo $this->Html->link(__('Universidades'), array('controller' => 'universities', 'action' => 'index', 'admin' => false )); ?></li>
+	          <li <?php echo (( $this->params['controller'] == 'beneficiaries' ) and $this->params['admin'] == false)  ? ' class="active" ' : null; ?>><?php echo $this->Html->link(__('Beneficiarios'), array('controller' => 'beneficiaries', 'action' => 'index', 'admin' => false )); ?></li>
 	          <li <?php echo $navbar_active_element == 'pages_about' ? ' class="active" ' : null; ?>><?php echo $this->Html->link(__('Sobre el Sistema'), array('controller' => 'pages', 'action' => 'about', 'admin' => false ) ); ?></li>
 	          <li <?php echo $navbar_active_element == 'pages_how_to_help' ? ' class="active" ' : null; ?>><?php echo $this->Html->link(__('C&oacute;mo Ayudar'), array('controller' => 'pages', 'action' => 'how_to_help', 'admin' => false ), array('escape' => false) ); ?></li>
 	          <?php if(AuthComponent::user('id')) { ?>
-	          <li class="dropdown  <?php echo $navbar_active_element == 'admin' ? 'active' : null; ?> ">
+	          <li class="dropdown  <?php echo $this->params['admin'] == true ? 'active' : null; ?> ">
 	            <?php echo $this->Html->link(__('Administraci&oacute;n') . '<b class="caret"></b>', '#', array('class' => 'dropdown-toggle', 'data-toggle' => 'dropdown', 'escape' => false) ); ?>
 	            <ul class="dropdown-menu">
 	              <li><?php echo $this->Html->link(__('Usuarios'), array('controller' => 'users', 'action' => 'index', 'admin' => true )); ?></li>
 	              <li><?php echo $this->Html->link(__('Universidades'), array('controller' => 'universities', 'action' => 'index', 'admin' => true )); ?></li>
+	              <li><?php echo $this->Html->link(__('Beneficiarios'), array('controller' => 'beneficiaries', 'action' => 'index', 'admin' => true )); ?></li>
 	              <li><?php echo $this->Html->link(__('Necesidades'), array('controller' => 'needs', 'action' => 'index', 'admin' => true )); ?></li>
 	              <li class="divider"></li>
 	              <li><?php echo $this->Html->link(__('Pa&iacute;ses'), array('controller' => 'countries', 'action' => 'index', 'admin' => true ), array('escape' => false )); ?></li>

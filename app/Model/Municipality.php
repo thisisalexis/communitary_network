@@ -55,4 +55,33 @@ class Municipality extends AppModel {
 			'order' => ''
 		)
 	);
+
+	public $hasMany = array(
+		'University' => array(
+			'className' => 'University',
+			'foreignKey' => 'municipality_id',
+			'dependent' => false,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'exclusive' => '',
+			'finderQuery' => '',
+			'counterQuery' => ''
+		),
+			'Person' => array(
+			'className' => 'Person',
+			'foreignKey' => 'municipality_id',
+			'dependent' => false,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'exclusive' => '',
+			'finderQuery' => '',
+			'counterQuery' => ''
+		)
+	);
 }
