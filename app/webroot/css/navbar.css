@@ -98,3 +98,5 @@
 #navbar.navbar-default .navbar-link:hover {
   color: #ff0;
 }
+
+#navbar .uncomplete { color: #ff0000; }

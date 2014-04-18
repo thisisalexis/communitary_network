@@ -12,7 +12,7 @@
 	        <ul class="nav navbar-nav">
 	          <li <?php echo $navbar_active_element == 'home' ? ' class="active" ' : null; ?>><?php echo $this->Html->link(__('Inicio'), array('controller' => 'pages', 'action' => 'display', 'home', 'admin' => false )); ?></li>
 	          <li <?php echo $navbar_active_element == 'universities' ? ' class="active" ' : null; ?>><?php echo $this->Html->link(__('Universidades'), array('controller' => 'universities', 'action' => 'index', 'admin' => false )); ?></li>
-	          <li <?php echo (( $this->params['controller'] == 'beneficiaries' ) and $this->params['admin'] == false)  ? ' class="active" ' : null; ?>><?php echo $this->Html->link(__('Beneficiarios'), array('controller' => 'beneficiaries', 'action' => 'index', 'admin' => false )); ?></li>
+	          <li <?php echo ($navbar_active_element == 'beneficiaries' && $this->params['admin'] == false)  ? ' class="active" ' : null; ?>><?php echo $this->Html->link(__('Beneficiarios'), array('controller' => 'beneficiaries', 'action' => 'index', 'admin' => false )); ?></li>
 	          <li <?php echo $navbar_active_element == 'pages_about' ? ' class="active" ' : null; ?>><?php echo $this->Html->link(__('Sobre el Sistema'), array('controller' => 'pages', 'action' => 'about', 'admin' => false ) ); ?></li>
 	          <li <?php echo $navbar_active_element == 'pages_how_to_help' ? ' class="active" ' : null; ?>><?php echo $this->Html->link(__('C&oacute;mo Ayudar'), array('controller' => 'pages', 'action' => 'how_to_help', 'admin' => false ), array('escape' => false) ); ?></li>
 	          <?php if(AuthComponent::user('id')) { ?>
@@ -24,6 +24,9 @@
 	              <li><?php echo $this->Html->link(__('Beneficiarios'), array('controller' => 'beneficiaries', 'action' => 'index', 'admin' => true )); ?></li>
 	              <li><?php echo $this->Html->link(__('Necesidades'), array('controller' => 'needs', 'action' => 'index', 'admin' => true )); ?></li>
 	              <li class="divider"></li>
+	              <li><?php echo $this->Html->link(__('Personas'), array('controller' => 'people', 'action' => 'index', 'admin' => true )); ?></li>
+	              <li><?php echo $this->Html->link(__('Tipos de Beneficiario'), array('controller' => 'beneficiary_types', 'action' => 'index', 'admin' => true )); ?></li>
+	              <li class="divider"></li>
 	              <li><?php echo $this->Html->link(__('Pa&iacute;ses'), array('controller' => 'countries', 'action' => 'index', 'admin' => true ), array('escape' => false )); ?></li>
 	              <li><?php echo $this->Html->link(__('Estados'), array('controller' => 'states', 'action' => 'index', 'admin' => true )); ?></li>
 	              <li><?php echo $this->Html->link(__('Ciudades'), array('controller' => 'cities', 'action' => 'index', 'admin' => true )); ?></li>
@@ -31,23 +34,6 @@
 	            </ul>
 	          </li>
 	           <?php } ?>
-	          <!--
-	          <li><a href="#">Comunidades</a></li>
-	          <li><a href="#">Universidades</a></li>
-	          <li><a href="#">Cont&aacute;ctenos</a></li>
-	          <li class="dropdown">
-	            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Administraci&oacute;n <b class="caret"></b></a>
-	            <ul class="dropdown-menu">
-	              <li><a href="#">Usuarios</a></li>
-	              <li><a href="#">Banco de Necesidades</a></li>
-	              <li><a href="#">Mensajes</a></li>
-	              <li class="divider"></li>
-	              <li class="dropdown-header">Sistema</li>
-	              <li><a href="#">Separated link</a></li>
-	              <li><a href="#">One more separated link</a></li>
-	            </ul>
-	          </li>
-	          -->
 	        </ul>
 	        <ul class="nav navbar-nav navbar-right">
 	        	<?php if( !( AuthComponent::user('id') ) ) { ?>

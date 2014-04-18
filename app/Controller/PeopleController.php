@@ -16,6 +16,11 @@ class PeopleController extends AppController {
  */
 	public $components = array('Paginator', 'Session');
 
+	public function beforeFilter() {
+		parent::beforeFilter();
+		$this->set( 'navbar_active_element', 'people' );
+	}
+
 /**
  * index method
  *

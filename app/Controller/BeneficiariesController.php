@@ -16,6 +16,13 @@ class BeneficiariesController extends AppController {
  */
 	public $components = array('Paginator', 'Session');
 
+
+	public function beforeFilter() {
+		parent::beforeFilter();
+		$this->Auth->allow('index', 'view'); // Letting users register themselves
+		$this->set( 'navbar_active_element', 'beneficiaries' );
+	}
+
 /**
  * index method
  *
