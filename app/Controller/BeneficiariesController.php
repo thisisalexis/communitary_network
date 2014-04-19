@@ -29,7 +29,7 @@ class BeneficiariesController extends AppController {
  * @return void
  */
 	public function index() {
-		$this->Beneficiary->recursive = 0;
+		$this->Beneficiary->recursive = 3;
 		$this->set('beneficiaries', $this->Paginator->paginate());
 	}
 
@@ -42,8 +42,9 @@ class BeneficiariesController extends AppController {
  */
 	public function view($id = null) {
 		if (!$this->Beneficiary->exists($id)) {
-			throw new NotFoundException(__('Invalid beneficiary'));
+			throw new NotFoundException(__('Registro inexistente'));
 		}
+		$this->Beneficiary->recursive = 3;
 		$options = array('conditions' => array('Beneficiary.' . $this->Beneficiary->primaryKey => $id));
 		$this->set('beneficiary', $this->Beneficiary->find('first', $options));
 	}
@@ -56,11 +57,15 @@ class BeneficiariesController extends AppController {
 	public function add() {
 		if ($this->request->is('post')) {
 			$this->Beneficiary->create();
+			
+			$this->request->data['Beneficiary']['is_active'] = true;
+			$this->request->data['Beneficiary']['user_id'] = AuthComponent::user('id');
+			
 			if ($this->Beneficiary->save($this->request->data)) {
-				$this->Session->setFlash(__('The beneficiary has been saved.'));
+				$this->Session->setFlash(__('El registro ha sido guardado satisfactoriamente.'));
 				return $this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The beneficiary could not be saved. Please, try again.'));
+				$this->Session->setFlash(__('El registro no ha podido crearse. Por favor, intente nuevamente.'));
 			}
 		}
 		$municipalities = $this->Beneficiary->Municipality->find('list');
@@ -79,14 +84,14 @@ class BeneficiariesController extends AppController {
  */
 	public function edit($id = null) {
 		if (!$this->Beneficiary->exists($id)) {
-			throw new NotFoundException(__('Invalid beneficiary'));
+			throw new NotFoundException(__('Registro inexistente'));
 		}
 		if ($this->request->is(array('post', 'put'))) {
 			if ($this->Beneficiary->save($this->request->data)) {
-				$this->Session->setFlash(__('The beneficiary has been saved.'));
+				$this->Session->setFlash(__('Los cambios han sido guardados satisfactoriamente.'));
 				return $this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The beneficiary could not be saved. Please, try again.'));
+				$this->Session->setFlash(__('El registro no ha podido crearse. Por favor, intente nuevamente.'));
 			}
 		} else {
 			$options = array('conditions' => array('Beneficiary.' . $this->Beneficiary->primaryKey => $id));
@@ -109,13 +114,13 @@ class BeneficiariesController extends AppController {
 	public function delete($id = null) {
 		$this->Beneficiary->id = $id;
 		if (!$this->Beneficiary->exists()) {
-			throw new NotFoundException(__('Invalid beneficiary'));
+			throw new NotFoundException(__('Registro inexistente'));
 		}
 		$this->request->onlyAllow('post', 'delete');
 		if ($this->Beneficiary->delete()) {
-			$this->Session->setFlash(__('The beneficiary has been deleted.'));
+			$this->Session->setFlash(__('El registro ha sido eliminado satisfactoriamente.'));
 		} else {
-			$this->Session->setFlash(__('The beneficiary could not be deleted. Please, try again.'));
+			$this->Session->setFlash(__('El registro no ha podido ser eliminado. Por favor, intente nuevamente.'));
 		}
 		return $this->redirect(array('action' => 'index'));
 	}
@@ -126,7 +131,7 @@ class BeneficiariesController extends AppController {
  * @return void
  */
 	public function admin_index() {
-		$this->Beneficiary->recursive = 0;
+		$this->Beneficiary->recursive = 3;
 		$this->set('beneficiaries', $this->Paginator->paginate());
 	}
 
@@ -139,8 +144,9 @@ class BeneficiariesController extends AppController {
  */
 	public function admin_view($id = null) {
 		if (!$this->Beneficiary->exists($id)) {
-			throw new NotFoundException(__('Invalid beneficiary'));
+			throw new NotFoundException(__('Registro inexistente.'));
 		}
+		$this->Beneficiary->recursive = 3;
 		$options = array('conditions' => array('Beneficiary.' . $this->Beneficiary->primaryKey => $id));
 		$this->set('beneficiary', $this->Beneficiary->find('first', $options));
 	}
@@ -152,12 +158,17 @@ class BeneficiariesController extends AppController {
  */
 	public function admin_add() {
 		if ($this->request->is('post')) {
+
 			$this->Beneficiary->create();
+
+			$this->request->data['Beneficiary']['is_active'] = true;
+			$this->request->data['Beneficiary']['user_id'] = AuthComponent::user('id');
+
 			if ($this->Beneficiary->save($this->request->data)) {
-				$this->Session->setFlash(__('The beneficiary has been saved.'));
+				$this->Session->setFlash(__('El registro ha sido guardado satisfactoriamente.'));
 				return $this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The beneficiary could not be saved. Please, try again.'));
+				$this->Session->setFlash(__('El registro no ha podido guardarse. Por favor, intente nuevamente.'));
 			}
 		}
 		$municipalities = $this->Beneficiary->Municipality->find('list');
@@ -176,14 +187,14 @@ class BeneficiariesController extends AppController {
  */
 	public function admin_edit($id = null) {
 		if (!$this->Beneficiary->exists($id)) {
-			throw new NotFoundException(__('Invalid beneficiary'));
+			throw new NotFoundException(__('Registro inexistente'));
 		}
 		if ($this->request->is(array('post', 'put'))) {
 			if ($this->Beneficiary->save($this->request->data)) {
-				$this->Session->setFlash(__('The beneficiary has been saved.'));
+				$this->Session->setFlash(__('Los cambios han sido guardados satisfactoriamente.'));
 				return $this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The beneficiary could not be saved. Please, try again.'));
+				$this->Session->setFlash(__('Los cambios no han podido guardarse. Por favor, intente nuevamente.'));
 			}
 		} else {
 			$options = array('conditions' => array('Beneficiary.' . $this->Beneficiary->primaryKey => $id));
@@ -206,13 +217,13 @@ class BeneficiariesController extends AppController {
 	public function admin_delete($id = null) {
 		$this->Beneficiary->id = $id;
 		if (!$this->Beneficiary->exists()) {
-			throw new NotFoundException(__('Invalid beneficiary'));
+			throw new NotFoundException(__('Registro inexistente'));
 		}
 		$this->request->onlyAllow('post', 'delete');
 		if ($this->Beneficiary->delete()) {
-			$this->Session->setFlash(__('The beneficiary has been deleted.'));
+			$this->Session->setFlash(__('El registro ha sido eliminado satisfactoriamente.'));
 		} else {
-			$this->Session->setFlash(__('The beneficiary could not be deleted. Please, try again.'));
+			$this->Session->setFlash(__('El registro no ha podido eliminarse. Por favor, intente nuevamente.'));
 		}
 		return $this->redirect(array('action' => 'index'));
 	}}

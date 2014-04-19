@@ -41,9 +41,9 @@ class BeneficiaryType extends AppModel {
 
 
 	public $hasMany = array(
-		'Beneficiery' => array(
-			'className' => 'Beneficiery',
-			'foreignKey' => 'beneficiery_type_id',
+		'Beneficiary' => array(
+			'className' => 'Beneficiary',
+			'foreignKey' => 'beneficiary_type_id',
 			'dependent' => false,
 			'conditions' => '',
 			'fields' => '',

@@ -40,7 +40,7 @@
 	        	<li <?php echo $navbar_active_element == 'login' ? ' class="active" ' : null; ?>><?php echo $this->Html->link(__('Entrar'), array('controller' => 'users', 'action' => 'login', 'admin' => false )); ?></li>
 	        	<li <?php echo $navbar_active_element == 'signup' ? ' class="active" ' : null; ?>><?php echo $this->Html->link(__('Registrarme'), array('controller' => 'users', 'action' => 'signup', 'admin' => false )); ?></li>
 	        	<?php } ?>
-	          	<li <?php echo $navbar_active_element == 'pages_help' ? ' class="active" ' : null; ?>><?php echo $this->Html->link(__('Ayuda'), array('controller' => 'pages', 'action' => 'help', 'admin' => false )); ?></li>
+	          	<li <?php echo $navbar_active_element == 'pages_help' ? ' class="active" ' : null; ?>><?php echo $this->Html->link(__('Ayuda'), array('controlle+r' => 'pages', 'action' => 'help', 'admin' => false )); ?></li>
 				<?php if(AuthComponent::user('id')) { ?>
 				<li class="dropdown <?php echo $navbar_active_element == 'account' ? 'active' : null; ?> ">
 					<?php echo $this->Html->link(__('Mi Cuenta') . '<b class="caret"></b>', '#', array('class' => 'dropdown-toggle', 'data-toggle' => 'dropdown', 'escape' => false) ); ?>

@@ -176,4 +176,21 @@ class Person extends AppModel {
 			'order' => ''
 		)
 	);
+
+	public $hasMany = array(
+		'Beneficiary' => array(
+			'className' => 'Beneficiary',
+			'foreignKey' => 'person_id',
+			'dependent' => false,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'exclusive' => '',
+			'finderQuery' => '',
+			'counterQuery' => ''
+		)
+	);
+
 }

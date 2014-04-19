@@ -82,6 +82,11 @@ class Municipality extends AppModel {
 			'exclusive' => '',
 			'finderQuery' => '',
 			'counterQuery' => ''
+		),
+			'Beneficiary' => array(
+			'className' => 'Beneficiary',
+			'foreignKey' => 'municipality_id',
+			'dependent' => false,
 		)
 	);
 }

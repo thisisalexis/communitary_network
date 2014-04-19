@@ -1,6 +1,5 @@
 <h2><?php echo h($university['University']['name']); ?></h2>
 
-
 <div class="panel panel-default">
 	<div class="panel-heading">
 		<?php echo $this->Html->link('<span class="glyphicon glyphicon-chevron-left"></span> Volver a listado de universidades', array('action' => 'index', 'admin' => true),  array('class' => 'btn btn-success btn-xs', 'escape' => false )); ?> 
